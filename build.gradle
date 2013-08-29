@@ -123,7 +123,10 @@ subprojects {
         from sourceSets.main.allSource
         classifier = 'sources'
     }
-
+task javadocJar(type: Jar, dependsOn: javadoc) {
+      classifier = 'javadoc'
+      from javadoc.destinationDir
+    }
     uploadArchives {
         uploadDescriptor = true
     }
@@ -136,6 +139,7 @@ subprojects {
     artifacts {
         published jar
         published sourceJar
+		published javadocJar
     }
 
     install {
